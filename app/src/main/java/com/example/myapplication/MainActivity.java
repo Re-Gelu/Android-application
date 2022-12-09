@@ -9,6 +9,7 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
 
     EditText text_field;
+    Button button_delete;
 
     Button button0;
     Button button1;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         this.button9 = findViewById(R.id.button9);
         this.button_symbol_1 = findViewById(R.id.button_symbol_1);
         this.button_symbol_2 = findViewById(R.id.button_symbol_2);
+        this.button_delete = findViewById(R.id.button_delete);
     }
 
     // обработка нажатия на числовую кнопку
@@ -53,6 +55,17 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = (Button)view;
         this.text_field.append(button.getText());
+    }
+
+    // обработка нажатия на кнопку удаления
+    public void onButtonDeleteClick(View view){
+
+        Button button = (Button)view;
+        int cursorPosition = text_field.getSelectionStart();
+        if (cursorPosition > 0) {
+            text_field.setText(text_field.getText().delete(cursorPosition - 1, cursorPosition));
+            text_field.setSelection(cursorPosition-1);
+        }
     }
 
     // обработка нажатия на кнопку операции
